@@ -7,10 +7,10 @@ using namespace std;
 
 typedef long long ll;
 
-int f(ll n)
+int f(ll n, ll k)
 {
     int count = 0;
-    for (int i = 5; n / i >= 1; i *= 5)
+    for (int i = k; n / i >= 1; i *= k)
     {
         count += n / i;
     }
@@ -22,8 +22,8 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n;
+    ll n;
     cin >> n;
 
-    cout << f(n) << "\n";
+    cout << min(f(n, 5), f(n, 2)) << "\n";
 }
