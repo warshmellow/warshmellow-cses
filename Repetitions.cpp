@@ -10,7 +10,7 @@ int f(string s)
     int maxLen = 1;
     int currLen = 1;
 
-    for (int j = 1; i < s.length(); j++)
+    for (int j = 1; j < s.length(); j++)
     {
         if (s[i] == s[j])
         {
@@ -23,7 +23,7 @@ int f(string s)
             currLen = 1;
         }
     }
-
+    maxLen = max(maxLen, currLen);
     return maxLen;
 }
 
