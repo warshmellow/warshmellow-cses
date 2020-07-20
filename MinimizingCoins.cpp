@@ -45,9 +45,8 @@ int main() {
   int result = f(coins, x);
 
   if (result == INT32_MAX) {
-    cout << "-1"
-         << "\n";
+    cout << "-1";
   } else {
-    cout << result << "\n";
+    cout << result;
   }
 }
