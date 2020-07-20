@@ -3,31 +3,7 @@
 
 using namespace std;
 
-int f(vector<int> coins, int x) {
-  int n = coins.size();
-  int MAX = INT32_MAX;
-
-  int dp[n + 1][x + 1];
-
-  for (int j = 1; j < x + 1; j++) {
-    dp[0][j] = MAX;
-  }
-
-  for (int i = 1; i < n + 1; i++) {
-    for (int j = 1; j < x + 1; j++) {
-      if (coins[i - 1] == j) {
-        dp[i][j] = 1;
-      } else if (coins[i - 1] > j) {
-        dp[i][j] = dp[i - 1][j];
-      } else if (dp[i][j - coins[i - 1]] < MAX) {
-        dp[i][j] = min(dp[i - 1][j], 1 + dp[i][j - coins[i - 1]]);
-      } else {
-        dp[i][j] = dp[i - 1][j];
-      }
-    }
-  }
-  return dp[n][x];
-}
+int INF = INT32_MAX;
 
 int main() {
   int n;
@@ -42,9 +18,20 @@ int main() {
     coins.push_back(coin);
   }
 
-  int result = f(coins, x);
+  vector<int> value(x + 1, 0);
+  value[0] = 0;
+  for (int i = 1; i <= x; i++) {
+    value[i] = INF;
+    for (auto c : coins) {
+      if (i - c >= 0 && value[i - c] < INF) {
+        value[i] = min(value[i], value[i - c] + 1);
+      }
+    }
+  }
 
-  if (result == INT32_MAX) {
+  int result = value[x];
+
+  if (result == INF) {
     cout << "-1";
   } else {
     cout << result;
