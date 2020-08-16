@@ -20,14 +20,12 @@ vector<int> f(vector<int> xs) {
   vector<int> rest = vector<int>(xs.begin() + 1, xs.end());
 
   vector<int> prev = f(rest);
-  set<int> rset;
+  set<int> rset{curr};
 
   for (auto psum : prev) {
     rset.insert(curr + psum);
     rset.insert(psum);
   }
-
-  rset.insert(curr);
 
   for (auto x : rset) {
     result.push_back(x);
