@@ -1,5 +1,5 @@
 # warshmellow-cses
-CSES Problem Set Solutions in CPP
+CSES Problem Set Solutions in CPP and Python 3
 
 See https://cses.fi/problemset/list/
 
