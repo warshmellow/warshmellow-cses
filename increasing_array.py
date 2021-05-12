@@ -1,11 +1,12 @@
 def g(nums):
-    n = len(nums)
     total = 0
-    m = nums[0]
+    curr_max = nums[0]
 
-    for i in range(1, n):
-        total += max(0, m - nums[i])
-        m = max(m, nums[i])
+    for curr in nums[1:]:
+        if curr_max > curr:
+            diff = curr_max - curr
+            total += diff
+        curr_max = max(curr_max, curr)
     return total
 
 
