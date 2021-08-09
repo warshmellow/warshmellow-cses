@@ -1,18 +1,22 @@
+from collections import deque
+
+
 def f(x, ps):
     ps.sort()
+    ps = deque(ps)
     n = len(ps)
     ans = 0
-    i = 0
-    j = n - 1
-    while i <= j:
+    while len(ps) >= 1:
         ans += 1
-        if i == j:
+        if len(ps) == 1:
             break
-        if ps[i] + ps[j] > x:
-            j -= 1
+        elif ps[0] + ps[-1] > x:
+            # include heaviest child only
+            ps.pop()
         else:
-            i += 1
-            j -= 1
+            # include lightest and heaviest child
+            ps.popleft()
+            ps.pop()
     return ans
 
 
