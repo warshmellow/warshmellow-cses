@@ -23,12 +23,12 @@ void solve() {
   int n;
   cin >> n;
 
-  vector<pair<int, int>> result = h(n, 1, 3, 2);
+  vector<pi> result = h(n, 1, 3, 2);
 
   cout << result.size() << "\n";
 
-  for (size_t i = 0; i < result.size(); i++) {
-    pair<int, int> p = result[i];
+  for (auto it = result.begin(); it != result.end(); it++) {
+    pi p = *it;
     cout << p.first << " " << p.second << "\n";
   }
 }
