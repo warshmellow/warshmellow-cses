@@ -3,22 +3,19 @@
 
 using namespace std;
 
-vector<pair<int, int>> h(int n, int src, int dst, int tmp) {
+typedef pair<int, int> pi;
+
+vector<pi> h(int n, int src, int dst, int tmp) {
   if (n > 0) {
-    vector<pair<int, int>> move1 = h(n - 1, src, tmp, dst);
+    vector<pi> move1 = h(n - 1, src, tmp, dst);
+    pi p = make_pair(src, dst);
+    vector<pi> move2 = h(n - 1, tmp, dst, src);
 
-    pair<int, int> p{src, dst};
-    vector<pair<int, int>> move_largest = {p};
-
-    vector<pair<int, int>> move2 = h(n - 1, tmp, dst, src);
-
-    vector<pair<int, int>> result;
-    result.insert(result.end(), move1.begin(), move1.end());
-    result.insert(result.end(), move_largest.begin(), move_largest.end());
-    result.insert(result.end(), move2.begin(), move2.end());
-    return result;
+    move1.push_back(p);
+    move1.insert(move1.end(), move2.begin(), move2.end());
+    return move1;
   } else {
-    return vector<pair<int, int>>{};
+    return vector<pi>{};
   }
 }
 
