@@ -1,8 +1,6 @@
 #include <math.h>
 
-#include <algorithm>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -21,14 +19,18 @@ ll f(ll n) {
   return result;
 }
 
-int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-
+void solve() {
   ll n;
   cin >> n;
 
   ll result = f(n);
 
   cout << result << "\n";
+}
+
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  solve();
+  return 0;
 }
