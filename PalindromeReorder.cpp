@@ -10,24 +10,18 @@
 using namespace std;
 
 typedef long long ll;
-typedef vector<ll> vll;
-typedef set<ll> sll;
-typedef map<char, ll> mcll;
-typedef vector<char> vc;
-typedef pair<char, ll> pcll;
-typedef deque<char> dc;
 
-mcll get_counts(string s) {
-  mcll result;
+map<char, ll> get_counts(string s) {
+  map<char, ll> result;
   for (char c : s) {
     result[c]++;
   }
   return result;
 }
 
-vc get_odd_strings(mcll mp) {
-  vc result;
-  for (pcll p : mp) {
+vector<char> get_odd_strings(map<char, ll> mp) {
+  vector<char> result;
+  for (pair<char, ll> p : mp) {
     if (p.second % 2 != 0) {
       result.push_back(p.first);
     }
@@ -36,12 +30,12 @@ vc get_odd_strings(mcll mp) {
 }
 
 string f(string s) {
-  mcll mp = get_counts(s);
-  vc odd_strings = get_odd_strings(mp);
+  map<char, ll> mp = get_counts(s);
+  vector<char> odd_strings = get_odd_strings(mp);
 
   if (odd_strings.size() > 1) return "";
 
-  dc result_list;
+  deque<char> result_list;
 
   if (odd_strings.size() == 1) {
     char odd_string = odd_strings[0];
@@ -53,7 +47,7 @@ string f(string s) {
 
   set<char> odd_strings_set(odd_strings.begin(), odd_strings.end());
 
-  for (pcll p : mp) {
+  for (pair<char, ll> p : mp) {
     char ch = p.first;
     ll cnt = p.second;
     if (odd_strings_set.count(ch) > 0) continue;
