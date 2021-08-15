@@ -20,10 +20,7 @@ typedef deque<char> dc;
 mcll get_counts(string s) {
   mcll result;
   for (char c : s) {
-    if (result.count(c) > 0)
-      result[c]++;
-    else
-      result[c] = 1;
+    result[c]++;
   }
   return result;
 }
