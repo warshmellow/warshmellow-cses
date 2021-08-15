@@ -1,27 +1,27 @@
-#include <math.h>
-
-#include <algorithm>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 typedef long long ll;
 
-int f(ll n, ll k) {
-  int count = 0;
-  for (int i = k; n / i >= 1; i *= k) {
+ll f(ll n, ll k) {
+  ll count = 0;
+  for (ll i = k; n / i >= 1; i *= k) {
     count += n / i;
   }
   return count;
 }
 
-int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-
+void solve() {
   ll n;
   cin >> n;
 
   cout << min(f(n, 5), f(n, 2)) << "\n";
+}
+
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  solve();
+  return (0);
 }
