@@ -19,21 +19,18 @@ typedef deque<char> dc;
 
 mcll get_counts(string s) {
   mcll result;
-  for (auto it = s.begin(); it != s.end(); it++) {
-    char c = *it;
-    if (result.count(c) > 0) {
+  for (char c : s) {
+    if (result.count(c) > 0)
       result[c]++;
-    } else {
+    else
       result[c] = 1;
-    }
   }
   return result;
 }
 
 vc get_odd_strings(mcll mp) {
   vc result;
-  for (auto it = mp.begin(); it != mp.end(); it++) {
-    pcll p = *it;
+  for (pcll p : mp) {
     if (p.second % 2 != 0) {
       result.push_back(p.first);
     }
@@ -59,8 +56,7 @@ string f(string s) {
 
   set<char> odd_strings_set(odd_strings.begin(), odd_strings.end());
 
-  for (auto it = mp.begin(); it != mp.end(); it++) {
-    pcll p = *it;
+  for (pcll p : mp) {
     char ch = p.first;
     ll cnt = p.second;
     if (odd_strings_set.count(ch) > 0) continue;
