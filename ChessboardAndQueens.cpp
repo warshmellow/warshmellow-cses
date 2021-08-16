@@ -7,19 +7,20 @@ using namespace std;
 typedef long long ll;
 
 size_t n = 8;
+ll ans = 0;
 vector<bool> col(n, false);
 vector<bool> diag1(2 * n, false);
 vector<bool> diag2(2 * n, false);
 
-void search(size_t y, ll& count, vector<string> board) {
+void search(size_t y, vector<string> board) {
   if (y == n) {
-    count += 1;
+    ans++;
   } else {
     for (size_t x = 0; x < n; x++) {
       if (!(col[x] || diag1[x + y] || diag2[x - y + n - 1] ||
             board[y][x] == '*')) {
         col[x] = diag1[x + y] = diag2[x - y + n - 1] = true;
-        search(y + 1, count, board);
+        search(y + 1, board);
         col[x] = diag1[x + y] = diag2[x - y + n - 1] = false;
       }
     }
@@ -34,9 +35,8 @@ void solve() {
     board.push_back(line);
   }
 
-  ll count = 0;
-  search(0, count, board);
-  cout << count << "\n";
+  search(0, board);
+  cout << ans << "\n";
 }
 
 int main() {
