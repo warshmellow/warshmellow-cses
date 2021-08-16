@@ -37,10 +37,7 @@ vector<int> f(int n) {
   }
 }
 
-int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-
+void solve() {
   int n;
   cin >> n;
 
@@ -55,4 +52,11 @@ int main() {
     }
     cout << "\n";
   }
+}
+
+int main() {
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  solve();
+  return 0;
 }
