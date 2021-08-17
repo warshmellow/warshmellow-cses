@@ -9,16 +9,6 @@
 using namespace std;
 
 typedef long long ll;
-typedef vector<ll> vll;
-typedef set<ll> sll;
-
-ll f(vll nums) {
-  sll s;
-  for (auto num : nums) {
-    s.insert(num);
-  }
-  return s.size();
-}
 
 int main() {
   ios::sync_with_stdio(0);
@@ -28,10 +18,10 @@ int main() {
   cin >> n;
 
   ll x;
-  vll nums;
+  set<ll> nums;
   while (cin >> x) {
-    nums.push_back(x);
+    nums.insert(x);
   }
 
-  cout << f(nums) << "\n";
+  cout << nums.size() << "\n";
 }
