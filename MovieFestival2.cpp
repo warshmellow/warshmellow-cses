@@ -20,7 +20,7 @@ void solve() {
 
   for (size_t i = 0; i < n; i++) {
     auto it = end_times.upper_bound(v[i].second);
-    if (it == begin(end_times)) continue;
+    if (it == end_times.begin()) continue;
     // assign movie to be watched by member in multiset who finishes at time
     // *prev(it)
     end_times.erase(next(it, -1));
