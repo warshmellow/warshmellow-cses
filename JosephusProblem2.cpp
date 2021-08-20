@@ -14,8 +14,9 @@ typedef tree<ll, null_type, less<ll>, rb_tree_tag,
 vector<ll> josh(indexed_set &person, ll k) {
   vector<ll> result;
   ll index = 0;
-  while (person.size() > 1) {
-    index = (index + k) % person.size();
+
+  for (ll n = person.size(); n > 1; n--) {
+    index = (index + k) % n;
     result.push_back(*person.find_by_order(index));
     person.erase(*person.find_by_order(index));
   }
