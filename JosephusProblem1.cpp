@@ -6,15 +6,23 @@ typedef long long ll;
 
 using namespace std;
 
-vector<size_t> josh(vector<size_t> &person, size_t k) {
-  vector<size_t> result;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+
+#define ordered_set                            \
+  tree<int, null_type, less<int>, rb_tree_tag, \
+       tree_order_statistics_node_update>
+
+vector<int> josh(ordered_set &person, size_t k) {
+  vector<int> result;
   size_t index = 0;
   while (person.size() > 1) {
     index = (index + k) % person.size();
-    result.push_back(person[index]);
-    person.erase(person.begin() + index);
+    result.push_back(*person.find_by_order(index));
+    person.erase(*person.find_by_order(index));
   }
-  result.push_back(person[0]);
+  result.push_back(*person.begin());
   return result;
 }
 
@@ -25,9 +33,9 @@ void solve() {
   size_t k = 2;
   k--;
 
-  vector<size_t> person;
-  for (size_t i = 1; i < n + 1; i++) {
-    person.push_back(i);
+  ordered_set person;
+  for (int i = 1; i < n + 1; i++) {
+    person.insert(i);
   }
 
   for (size_t x : josh(person, k)) {
