@@ -1,21 +1,18 @@
 #include <algorithm>
+#include <ext/pb_ds/assoc_container.hpp>
 #include <iostream>
 #include <vector>
 
-typedef long long ll;
-
 using namespace std;
-
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
 
-#define ordered_set                            \
-  tree<int, null_type, less<int>, rb_tree_tag, \
-       tree_order_statistics_node_update>
+typedef long long ll;
+typedef tree<ll, null_type, less<ll>, rb_tree_tag,
+             tree_order_statistics_node_update>
+    indexed_set;
 
-vector<int> josh(ordered_set &person, size_t k) {
-  vector<int> result;
+vector<ll> josh(indexed_set &person, ll k) {
+  vector<ll> result;
   size_t index = 0;
   while (person.size() > 1) {
     index = (index + k) % person.size();
@@ -27,14 +24,14 @@ vector<int> josh(ordered_set &person, size_t k) {
 }
 
 void solve() {
-  size_t n;
+  ll n;
   cin >> n;
 
-  size_t k = 2;
+  ll k = 2;
   k--;
 
-  ordered_set person;
-  for (int i = 1; i < n + 1; i++) {
+  indexed_set person;
+  for (ll i = 1; i < n + 1; i++) {
     person.insert(i);
   }
 
