@@ -6,7 +6,7 @@ typedef long long ll;
 
 using namespace std;
 
-vector<size_t> josh(vector<size_t> person, size_t k) {
+vector<size_t> josh(vector<size_t> &person, size_t k) {
   vector<size_t> result;
   size_t index = 0;
   while (person.size() > 1) {
