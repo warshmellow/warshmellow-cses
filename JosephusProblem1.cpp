@@ -13,7 +13,7 @@ typedef tree<ll, null_type, less<ll>, rb_tree_tag,
 
 vector<ll> josh(indexed_set &person, ll k) {
   vector<ll> result;
-  size_t index = 0;
+  ll index = 0;
   while (person.size() > 1) {
     index = (index + k) % person.size();
     result.push_back(*person.find_by_order(index));
@@ -35,7 +35,7 @@ void solve() {
     person.insert(i);
   }
 
-  for (size_t x : josh(person, k)) {
+  for (ll x : josh(person, k)) {
     cout << x << " ";
   }
   cout << "\n";
