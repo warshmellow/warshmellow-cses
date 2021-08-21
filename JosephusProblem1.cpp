@@ -11,11 +11,11 @@ typedef tree<ll, null_type, less<ll>, rb_tree_tag,
              tree_order_statistics_node_update>
     indexed_set;
 
-vector<ll> josh(indexed_set &person, ll k) {
+vector<ll> josh(indexed_set &person) {
   vector<ll> result;
   ll index = 0;
   while (person.size() > 1) {
-    index = (index + k) % person.size();
+    index = (index + 1) % person.size();
     result.push_back(*person.find_by_order(index));
     person.erase(*person.find_by_order(index));
   }
@@ -27,15 +27,12 @@ void solve() {
   ll n;
   cin >> n;
 
-  ll k = 2;
-  k--;
-
   indexed_set person;
   for (ll i = 1; i < n + 1; i++) {
     person.insert(i);
   }
 
-  for (ll x : josh(person, k)) {
+  for (ll x : josh(person)) {
     cout << x << " ";
   }
   cout << "\n";
