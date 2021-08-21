@@ -16,8 +16,11 @@ vector<ll> josh(indexed_set &person) {
   ll index = 0;
   while (person.size() > 1) {
     index = (index + 1) % person.size();
-    result.push_back(*person.find_by_order(index));
-    person.erase(*person.find_by_order(index));
+
+    ll erased = *person.find_by_order(index);
+
+    result.push_back(erased);
+    person.erase(erased);
   }
   result.push_back(*person.begin());
   return result;
