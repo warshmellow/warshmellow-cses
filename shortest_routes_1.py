@@ -37,14 +37,11 @@ class PQueue:
 
 def g(adj, n, m):
     MAX_WEIGHT = math.inf
-    dist = {1: 0}
+    dist = [MAX_WEIGHT] * (n + 1)
+    dist[1] = 0
 
     Q = PQueue()
     Q.add_task(1, dist[1])
-
-    for v in range(1, n + 1):
-        if v != 1:
-            dist[v] = MAX_WEIGHT
 
     while True:
         try:
