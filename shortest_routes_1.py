@@ -40,11 +40,11 @@ def g(adj, n, m):
     dist = {1: 0}
 
     Q = PQueue()
+    Q.add_task(1, dist[1])
 
     for v in range(1, n + 1):
         if v != 1:
             dist[v] = MAX_WEIGHT
-        Q.add_task(v, dist[v])
 
     while True:
         try:
