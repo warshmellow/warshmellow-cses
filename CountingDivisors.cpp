@@ -7,8 +7,8 @@ typedef vector<int> vi;
 
 vi g(int n) {
   vi result(n);
-  for (int i = 1; i <= n; i++) {
-    for (int j = i; j <= n; j += i) {
+  for (int i = 1; i < n + 1; i++) {
+    for (int j = i; j < n + 1; j += i) {
       result[j]++;
     }
   }
