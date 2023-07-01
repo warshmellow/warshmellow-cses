@@ -12,7 +12,6 @@ const int max_n = 2e5;
 
 // adjacency list adj and sub counts need to be passed by reference via &
 void dfs(vector<vi>& adj, vi& subs, int u) {
-  subs[u] = 1;
   for (int v : adj[u]) {
     dfs(adj, subs, v);
     subs[u] += subs[v];
@@ -21,7 +20,7 @@ void dfs(vector<vi>& adj, vi& subs, int u) {
 
 int main() {
   vector<vi> adj(max_n + 1);
-  vi subs(max_n + 1);
+  vi subs(max_n + 1, 1);
 
   int n;
   cin >> n;
