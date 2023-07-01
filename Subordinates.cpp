@@ -6,57 +6,34 @@
 
 using namespace std;
 
-typedef long long ll;
-typedef vector<ll> vll;
+typedef vector<int> vi;
 
-ll count_subs(map<ll, vll> adj, ll boss) {
-  vll direct_subs = adj[boss];
+const int max_n = 2e5;
 
-  ll total = 0;
-  for (int i = 0; i < direct_subs.size(); i++) {
-    ll direct_sub = direct_subs[i];
-    total += 1 + count_subs(adj, direct_sub);
+vi sz(max_n + 1);
+vector<vi> G(max_n + 1);
+
+void dfs(int u) {
+  sz[u] = 1;
+  for (int v : G[u]) {
+    dfs(v);
+    sz[u] += sz[v];
   }
-  return total;
-}
-
-vll g(vll bosses) {
-  map<ll, vll> adj;
-
-  int n = bosses.size() + 1;
-
-  for (ll i = 0; i < bosses.size(); i++) {
-    ll sub = i + 2;
-    ll boss = bosses[i];
-
-    if (adj.find(boss) == adj.end()) {
-      adj[boss] = vll();
-    }
-
-    adj[boss].push_back(sub);
-  }
-
-  vll result;
-  for (ll i = 1; i < n + 1; i++) {
-    result.push_back(count_subs(adj, i));
-  }
-  return result;
 }
 
 int main() {
   int n;
   cin >> n;
 
-  vll bosses;
-  for (int i = 0; i < n - 1; i++) {
-    ll ai;
-    cin >> ai;
-    bosses.push_back(ai);
+  for (int i = 2; i < n + 1; i++) {
+    int p;
+    cin >> p;
+    G[p].push_back(i);
   }
 
-  vll result = g(bosses);
+  dfs(1);
 
-  for (int i = 0; i < n; i++) {
-    cout << result[i] << " ";
+  for (int i = 1; i < n + 1; i++) {
+    cout << sz[i] - 1 << " ";
   }
 }
