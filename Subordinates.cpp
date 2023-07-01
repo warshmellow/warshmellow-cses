@@ -10,30 +10,31 @@ typedef vector<int> vi;
 
 const int max_n = 2e5;
 
-vi sz(max_n + 1);
-vector<vi> G(max_n + 1);
-
-void dfs(int u) {
-  sz[u] = 1;
-  for (int v : G[u]) {
-    dfs(v);
-    sz[u] += sz[v];
+// adjacency list adj and sub counts need to be passed by reference via &
+void dfs(vector<vi>& adj, vi& subs, int u) {
+  subs[u] = 1;
+  for (int v : adj[u]) {
+    dfs(adj, subs, v);
+    subs[u] += subs[v];
   }
 }
 
 int main() {
+  vector<vi> adj(max_n + 1);
+  vi subs(max_n + 1);
+
   int n;
   cin >> n;
 
   for (int i = 2; i < n + 1; i++) {
     int p;
     cin >> p;
-    G[p].push_back(i);
+    adj[p].push_back(i);
   }
 
-  dfs(1);
+  dfs(adj, subs, 1);
 
   for (int i = 1; i < n + 1; i++) {
-    cout << sz[i] - 1 << " ";
+    cout << subs[i] - 1 << " ";
   }
 }
