@@ -4,44 +4,37 @@
 #include <set>
 #include <vector>
 
-typedef long long ll;
-
 using namespace std;
 
-ll g(vector<ll> a) {
-  map<ll, ll> h;
-  h[0] = 1;
+typedef long long ll;
+typedef vector<int> vi;
 
-  int n = a.size();
+ll g(vi a) {
+  const int max_n = 2e5;
+  const int n = a.size();
 
-  ll count = 0;
-  ll curr = 0;
+  vi freq(max_n);
+  ll cnt = 0;
+  int pre = 0;
+
+  freq[0] = 1;
 
   for (int i = 0; i < n; i++) {
-    ll p = curr;
-    p %= n;
-
-    curr += a[i];
-    curr %= n;
-
-    if (h.count(p)) count += h[p];
-
-    if (h.count(curr))
-      h[curr]++;
-    else
-      h[curr] = 1;
+    int ai = a[i];
+    pre = ((pre + ai) % n + n) % n;
+    cnt += freq[pre];
+    freq[pre]++;
   }
-
-  return count;
+  return cnt;
 }
 
 int main() {
   int n;
   cin >> n;
 
-  vector<ll> a;
+  vi a;
   for (int i = 0; i < n; i++) {
-    ll ai;
+    int ai;
     cin >> ai;
     a.push_back(ai);
   }
