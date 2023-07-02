@@ -9,6 +9,8 @@ using namespace std;
 typedef long long ll;
 typedef vector<int> vi;
 
+int nonneg_mod(int x, int n) { return (x % n + n) % n; }
+
 ll g(vi a) {
   const int max_n = 2e5;
   const int n = a.size();
@@ -21,7 +23,7 @@ ll g(vi a) {
 
   for (int i = 0; i < n; i++) {
     int ai = a[i];
-    pre = ((pre + ai) % n + n) % n;
+    pre = nonneg_mod(pre + ai, n);
     cnt += freq[pre];
     freq[pre]++;
   }
