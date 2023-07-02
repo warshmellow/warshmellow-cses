@@ -15,7 +15,7 @@ ll g(vi a) {
   const int max_n = 2e5;
   const int n = a.size();
 
-  vi freq(max_n);
+  vi freq(max_n, 0);
   ll cnt = 0;
   int pre = 0;
 
