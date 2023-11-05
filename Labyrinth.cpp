@@ -35,7 +35,7 @@ bool bfs(pt start_pt, pt end_pt) {
     int x = curr_pt.first;
     int y = curr_pt.second;
 
-    visited[x][y] = true;
+    // visited[x][y] = true;
 
     if (curr_pt == end_pt) {
       shortest_path = curr_path;
@@ -47,6 +47,8 @@ bool bfs(pt start_pt, pt end_pt) {
       int dy = y + v[i];
 
       if (0 <= dx && dx < n && 0 <= dy && dy < m && !visited[dx][dy]) {
+        visited[dx][dy] = true;
+
         pt next_pt(dx, dy);
         string path = curr_path + d[i];
 
