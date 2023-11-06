@@ -35,8 +35,6 @@ bool bfs(pt start_pt, pt end_pt) {
     int x = curr_pt.first;
     int y = curr_pt.second;
 
-    // visited[x][y] = true;
-
     if (curr_pt == end_pt) {
       shortest_path = curr_path;
       return true;
@@ -50,10 +48,9 @@ bool bfs(pt start_pt, pt end_pt) {
         visited[dx][dy] = true;
 
         pt next_pt(dx, dy);
-        string path = curr_path + d[i];
-
-        // cout << dx << ", " << dy << " " << path << "\n";
-        pt_path next_pt_path(next_pt, path);
+        curr_path.append(d[i]);
+        pt_path next_pt_path(next_pt, curr_path);
+        curr_path.pop_back();
 
         q.push(next_pt_path);
       }
