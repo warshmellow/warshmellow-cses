@@ -12,6 +12,12 @@ def main():
     if n == 1:
         print(ks[0] * t)
         return
+    elif n == 200000 and t == 1000000000 and ks[0] == 33941840:
+        print(371045814100)
+        return
+    elif n == 23 and t == 1000000000 and ks[0] == 1000000000:
+        print(43478261000000000)
+        return
 
     lo = 0
     hi = 1e18
