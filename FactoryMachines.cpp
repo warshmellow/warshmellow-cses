@@ -14,6 +14,13 @@ int main() {
   vector<ll> ks;
   vector<ll> tks;
 
+  if (n == 1) {
+    ll k;
+    cin >> k;
+    cout << k * t;
+    return 0;
+  }
+
   for (ll i = 0; i < n; i++) {
     ll k;
     cin >> k;
