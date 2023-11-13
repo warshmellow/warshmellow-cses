@@ -2,6 +2,10 @@ def total_after_time(t, ks):
     return sum(t // k for k in ks)
 
 
+def valid(mid, t, ks):
+    return total_after_time(mid, ks) >= t
+
+
 def main():
     n, t = [int(y) for y in input().split()]
     ks = [int(y) for y in input().split()]
@@ -23,7 +27,7 @@ def main():
     hi = 1e18
     while lo <= hi:
         mid = lo + (hi - lo) // 2
-        if total_after_time(mid, ks) >= t:
+        if valid(mid, t, ks):
             hi = mid - 1
         else:
             lo = mid + 1
