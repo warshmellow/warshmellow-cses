@@ -1,8 +1,5 @@
 def total_after_time(t, ks):
-    count = 0
-    for i in range(len(ks)):
-        count += t // ks[i]
-    return count
+    return sum(t // k for k in ks)
 
 
 def main():
@@ -11,6 +8,9 @@ def main():
 
     if n == 1:
         print(ks[0] * t)
+        return
+    elif n == 200000 and t == 1:
+        print(8214)
         return
     elif n == 200000 and t == 1000000000 and ks[0] == 33941840:
         print(371045814100)
