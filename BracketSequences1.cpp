@@ -30,12 +30,13 @@ ll binom(ll n, ll k) {
   return factorial[n] * inverse(factorial[k] * factorial[n - k] % MOD) % MOD;
 }
 
-ll c(ll n) {
+ll c(ll n) { return inverse(n + 1) * binom(2 * n, n) % MOD; }
+
+ll bracket_sequences(ll n) {
   if (n % 2 == 1) {
     return 0;
   }
-
-  return inverse(n / 2 + 1) * binom(n, n / 2) % MOD;
+  return c(n / 2);
 }
 
 int main() {
@@ -47,5 +48,5 @@ int main() {
   ll n;
   cin >> n;
 
-  cout << c(n);
+  cout << bracket_sequences(n);
 }
