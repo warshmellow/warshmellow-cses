@@ -1,19 +1,22 @@
 
+Type 
+  TBoolArray = Array Of boolean;
+
 Var 
   n: int64;
+  seen: TBoolArray;
+  i, x: int64;
 Begin
   readln(n);
+  SetLength(seen, n + 1);
 
-  While True Do
+  For i := 1 To n - 1 Do
     Begin
-      Write(n, ' ');
-      If (n = 1) Then
-        break
-      Else If (n Mod 2 = 0) Then
-             n := n Div 2
-      Else
-        n := n * 3 + 1;
+      read(x);
+      seen[x] := True;
     End;
 
-  writeln();
+  For i := 1 To n Do
+    If (Not seen[i]) Then
+      writeln(i);
 End.
